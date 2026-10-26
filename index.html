@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Jagannath Mishra — AI & ML Engineer · Full-Stack Developer · GenAI & LLM Systems</title>
-<meta name="description" content="Portfolio of Jagannath Samartha Mishra — AI & ML Engineer, Full-Stack Developer, CTO at Goldielocks Zone. Specializing in Python, LangChain, RAG Pipelines, React.js, and scalable AI-native SaaS products.">
+<meta name="description" content="Portfolio of Jagannath Samartha Mishra — AI & ML Engineer, Full-Stack Developer, CTO at CourierX. Specializing in Python, LangChain, RAG Pipelines, React.js, and scalable AI-native SaaS products.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2305070a'/%3E%3Ccircle cx='16' cy='17' r='8' fill='%23e0231c'/%3E%3Crect x='4' y='8' width='24' height='2.6' fill='%23dfe7e0'/%3E%3Crect x='7' y='13' width='18' height='2' fill='%23dfe7e0'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="secret-pathways-assets/fonts.css">
 <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.4/dist/lenis.css">
@@ -269,11 +269,12 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .gate-stats div span{ font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
 
 /* — chapter II: pathways cards */
-.cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(10px,1.4vw,22px); align-items:start; }
+.cards{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(10px,1.4vw,22px); align-items:start; }
 .card{ position:relative; cursor:pointer; }
 .card:nth-child(1){ transform:translateY(0); }
 .card:nth-child(2){ transform:translateY(clamp(26px,5vw,74px)); }
 .card:nth-child(3){ transform:translateY(clamp(52px,10vw,148px)); }
+.card:nth-child(4){ transform:translateY(clamp(78px,15vw,222px)); }
 /* the frame is a hole punched in the page — the scene is rendered straight
    into this rectangle with a scissored viewport, so each card is a live
    window onto a different corner of the sanctuary */
@@ -297,6 +298,11 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   background:
     linear-gradient(180deg,rgba(3,6,9,.05) 36%,rgba(3,6,9,.74) 100%),
     url('secret-pathways-assets/generated/kage-moonwater.webp') center / cover no-repeat;
+}
+.card:nth-child(4) .card-fr{
+  background:
+    linear-gradient(180deg,rgba(3,6,9,.06) 36%,rgba(3,6,9,.75) 100%),
+    url('secret-pathways-assets/generated/kage-lantern-flight.webp') center / cover no-repeat;
 }
 .card-fr::after{ content:''; position:absolute; inset:0;
   background:linear-gradient(transparent 46%, rgba(4,6,9,.80)); pointer-events:none; }
@@ -387,6 +393,525 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .card:hover .card-ar{ opacity:1; transform:none; }
 .card-meta{ display:flex; justify-content:space-between; margin-top:12px;
   font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+
+/* ------------------------------------------------- the explainer affordance
+   A plate that opens into a film has to say so before it is clicked, and the
+   only honest place to say it is on the plate itself. The badge takes the
+   top-left — the arrow already owns the opposite corner — and carries the one
+   fact that decides whether anyone opens it: how long this will take. The dot
+   breathes rather than blinks; a blink reads as an error light. */
+.card-tag{
+  position:absolute; top:13px; left:13px; z-index:2;
+  display:inline-flex; align-items:center; gap:7px; padding:5px 9px 5px 7px;
+  border:1px solid rgba(223,231,224,.13); background:rgba(4,7,10,.40);
+  -webkit-backdrop-filter:blur(7px); backdrop-filter:blur(7px);
+  font-size:9px; letter-spacing:.17em; text-transform:uppercase; color:var(--bone-dim);
+  opacity:.70; transition:opacity .5s var(--ease), border-color .5s var(--ease);
+}
+.card:hover .card-tag, .card:focus-visible .card-tag{ opacity:1; border-color:rgba(223,231,224,.26); }
+.card-tag i{ width:5px; height:5px; border-radius:50%; background:var(--ember);
+  box-shadow:0 0 0 3px rgba(255,90,60,.13); animation:tag-live 2.8s var(--ease-io) infinite; }
+@keyframes tag-live{ 0%,100%{ opacity:.42 } 50%{ opacity:1 } }
+.card:focus-visible{ outline:none; }
+.card:focus-visible .card-fr{ outline:1px solid var(--ember); outline-offset:3px; }
+@media (prefers-reduced-motion:reduce){ .card-tag i{ animation:none; } }
+
+/* =====================================================================
+   経路 · THE PATH
+   ---------------------------------------------------------------------
+   A pipeline drawn as a lantern path, and a torch the reader carries along
+   it. Dragging the torch walks the data through the system — each stage
+   lights as it is reached and says what it does — so the architecture is
+   explained by being operated rather than by being captioned.
+
+   The torch walks on its own until it is first touched, and then never
+   again: the drift is there to show that the rail is a control, and once
+   that has been understood it is only in the way.
+   ===================================================================== */
+/* The band is a plaque mounted on the garden, not a paragraph standing in
+   it. Full-bleed to the chapter's gutters, with its own ground: the near
+   plane and the sanctuary both run straight through this part of the page,
+   and prose laid over either of them cannot be read. */
+.path{
+  position:relative; margin:clamp(74px,12vh,150px) calc(var(--pad) * -1) 0;
+  padding:clamp(26px,3.6vh,46px) var(--pad) clamp(22px,3vh,38px);
+  background:linear-gradient(180deg, rgba(5,8,11,.90), rgba(4,7,10,.96) 40%, rgba(5,8,11,.91));
+  -webkit-backdrop-filter:blur(24px) saturate(.78); backdrop-filter:blur(24px) saturate(.78);
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+/* a seam of light along the top edge, so the plaque reads as lit rather than
+   as a hole cut out of the page */
+.path::before{
+  content:''; position:absolute; left:0; right:0; top:-1px; height:1px; pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(224,35,28,.5) 16%,rgba(255,112,72,.8) 50%,rgba(224,35,28,.5) 84%,transparent);
+}
+/* While the path is being read the garden stands down. The near plane is
+   fixed to the lower viewport, so it does not scroll off the band the way a
+   section-owned element would — it has to be told to let go.
+
+   The flag is NOT called path-read: that name already belongs to the readout
+   panel below, and on <html> it made the root element a grid whose first
+   column was the whole document. A root-level flag has to own its name. */
+html.reading-path .fg .fg-el{
+  opacity:.09; filter:blur(6px);
+  transition:opacity .7s var(--ease), filter .7s var(--ease);
+}
+.path-head{ display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;
+  margin-bottom:clamp(30px,5vh,56px); }
+.path-head .k{ font-size:10px; font-weight:500; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); }
+.path-head .k b{ color:var(--vermilion); font-weight:500; }
+.path-tabs{ display:flex; flex-wrap:wrap; gap:2px; margin-left:auto; }
+.path-tab{
+  display:inline-flex; align-items:center; gap:8px; padding:7px 13px;
+  border:0; border-bottom:1px solid transparent; background:transparent; cursor:pointer;
+  font-size:9px; letter-spacing:.17em; text-transform:uppercase; color:var(--muted);
+  transition:color .35s var(--ease), border-color .35s var(--ease);
+}
+.path-tab b{ font-weight:400; color:rgba(223,231,224,.32); font-variant-numeric:tabular-nums; }
+.path-tab:hover{ color:var(--bone-dim); }
+.path-tab:hover b{ color:rgba(223,231,224,.55); }
+.path-tab.on{ color:var(--bone); border-bottom-color:var(--ember); }
+.path-tab.on b{ color:var(--vermilion); }
+.path-tab:focus-visible{ outline:1px solid var(--ember); outline-offset:2px; }
+
+/* — the rail */
+/* --axis is where the markers' centres actually land: the rail's top padding
+   plus half a marker. The line, the torch and the sparks all hang off it, so
+   the marker can be resized in one place without them drifting off it. */
+.path-rail{
+  position:relative; padding:34px 0 10px; touch-action:pan-y; --axis:47px;
+  cursor:ew-resize; -webkit-user-select:none; user-select:none;
+}
+.path-line{ position:absolute; left:0; right:0; top:var(--axis); height:1px;
+  background:rgba(223,231,224,.17);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+/* a current running the length of it — the path is carrying something even
+   when nobody is holding the torch */
+.path-line::after{
+  content:''; position:absolute; inset:-1px 0; opacity:.42;
+  background:linear-gradient(90deg,transparent,rgba(255,110,70,.95),transparent);
+  background-size:26% 100%; background-repeat:no-repeat;
+  animation:path-sweep 6.2s linear infinite;
+}
+@keyframes path-sweep{ from{ background-position:-26% 0; } to{ background-position:126% 0; } }
+.path-spark{ position:absolute; top:calc(var(--axis) - 2px); width:4px; height:4px; border-radius:50%;
+  background:var(--ember); box-shadow:0 0 9px 2px rgba(255,90,60,.55); opacity:.75;
+  animation:path-fly linear infinite; }
+.path-spark:nth-of-type(1){ animation-duration:7.4s; animation-delay:-1.2s; }
+.path-spark:nth-of-type(2){ animation-duration:9.1s; animation-delay:-5.6s; }
+@keyframes path-fly{
+  0%{ left:2%; opacity:0 } 12%{ opacity:.8 } 88%{ opacity:.8 } 100%{ left:98%; opacity:0 }
+}
+
+/* the torch: the reader's own position on the path */
+.path-torch{
+  position:absolute; top:var(--axis); left:0; width:132px; aspect-ratio:1;
+  translate:-50% -50%; pointer-events:none; mix-blend-mode:screen; opacity:0;
+  background:radial-gradient(closest-side, rgba(255,186,120,.50), rgba(226,86,40,.20) 42%, transparent 72%);
+  transition:opacity .5s var(--ease);
+}
+.path.lit .path-torch{ opacity:1; }
+.path-torch::after{ content:''; position:absolute; left:50%; top:50%; width:7px; height:7px;
+  translate:-50% -50%; border-radius:50%; background:#ffd7a8;
+  box-shadow:0 0 14px 4px rgba(255,138,76,.85); }
+
+/* — the stations */
+.path-nodes{ position:relative; display:flex; justify-content:space-between; align-items:flex-start; }
+.path-node{
+  position:relative; display:flex; flex-direction:column; align-items:center; gap:0;
+  flex:0 0 auto; width:clamp(74px,8.4vw,116px); background:none; border:0; padding:0;
+  color:inherit; cursor:pointer; text-align:center;
+}
+.path-mark{
+  position:relative; width:26px; height:26px; rotate:45deg; margin-bottom:17px;
+  border:1px solid rgba(223,231,224,.26); background:rgba(6,9,13,.92);
+  transition:border-color .45s var(--ease), background .45s var(--ease), scale .5s var(--ease-out);
+}
+/* the kumiko cross inside the marker — the same lattice as the screens, at
+   the smallest size it still reads at */
+.path-mark::before{ content:''; position:absolute; inset:5px;
+  background:
+    linear-gradient(rgba(223,231,224,.22),rgba(223,231,224,.22)) 50% 0/1px 100% no-repeat,
+    linear-gradient(rgba(223,231,224,.22),rgba(223,231,224,.22)) 0 50%/100% 1px no-repeat; }
+.path-mark::after{ content:''; position:absolute; inset:-9px; border-radius:50%;
+  background:radial-gradient(closest-side, rgba(255,138,76,.55), transparent 72%);
+  opacity:0; transition:opacity .5s var(--ease); }
+.path-jp{ font-size:11px; letter-spacing:.26em; color:rgba(223,231,224,.50);
+  transition:color .4s var(--ease); }
+.path-en{ margin-top:5px; font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--muted); transition:color .4s var(--ease); }
+
+/* reached — everything the torch has already passed */
+.path-node.past .path-mark{ border-color:rgba(255,120,80,.42); }
+.path-node.past .path-jp{ color:rgba(223,231,224,.72); }
+/* the stage the torch is standing on */
+.path-node.on .path-mark{ border-color:var(--ember); background:rgba(40,11,6,.95); scale:1.22; }
+.path-node.on .path-mark::after{ opacity:1; }
+.path-node.on .path-jp{ color:var(--bone); }
+.path-node.on .path-en{ color:var(--bone-dim); }
+.path-node:focus-visible{ outline:none; }
+.path-node:focus-visible .path-mark{ border-color:var(--bone); scale:1.22; }
+
+/* — the readout */
+.path-read{
+  margin-top:clamp(26px,4vh,46px); display:grid;
+  grid-template-columns:minmax(0,.46fr) minmax(0,1fr); gap:clamp(18px,3vw,46px);
+  padding:clamp(18px,2.4vw,28px) 0 0; border-top:1px solid var(--line-soft);
+}
+.path-read .lhs{ display:flex; flex-direction:column; gap:10px; }
+.path-ix{ font-size:10px; letter-spacing:.2em; color:var(--vermilion); font-variant-numeric:tabular-nums; }
+.path-name{ font-size:clamp(20px,2.1vw,31px); font-weight:300; text-transform:uppercase;
+  letter-spacing:-.005em; color:var(--bone); line-height:1.08; }
+.path-name span{ display:block; font-size:14px; letter-spacing:.3em; text-transform:none;
+  color:var(--ember); margin-bottom:8px; }
+.path-note{ font-size:clamp(14px,1.06vw,17px); line-height:1.74; color:#ccd5ce; font-weight:300;
+  max-width:68ch; }
+.path-tech{ margin-top:16px; font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--bone-dim); display:flex; flex-wrap:wrap; gap:7px 14px; }
+.path-tech b{ color:var(--ember); font-weight:400; }
+/* the swap, so a stage change reads as a change rather than as a redraw */
+.path-read .lhs, .path-read .rhs{ transition:opacity .22s var(--ease), transform .34s var(--ease-out); }
+.path.swapping .lhs, .path.swapping .rhs{ opacity:0; transform:translate3d(0,7px,0); }
+
+.path-hint{ margin-top:20px; padding-top:16px; border-top:1px solid var(--line-soft);
+  font-size:9px; letter-spacing:.17em; text-transform:uppercase; color:var(--bone-dim); }
+.path-hint kbd{ font:inherit; letter-spacing:.1em; color:var(--bone-dim);
+  border:1px solid var(--line); padding:2px 6px; margin:0 2px; }
+
+/* — the card that owns the path says so */
+.card.sel .card-fr{ outline-color:rgba(255,90,60,.46); }
+.card-sel{
+  position:absolute; left:16px; bottom:calc(100% + 11px); z-index:2;
+  display:flex; align-items:center; gap:8px; white-space:nowrap;
+  font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--ember);
+  opacity:0; transform:translate3d(0,5px,0); transition:.5s var(--ease-out); pointer-events:none;
+}
+.card.sel .card-sel{ opacity:1; transform:none; }
+.card-sel::before{ content:''; width:16px; height:1px; background:var(--ember); }
+
+@media (max-width:860px){
+  /* no torch to drag with a thumb: the stations stack and are tapped */
+  .path-rail{ cursor:default; padding-top:6px; }
+  .path-line, .path-spark, .path-torch{ display:none; }
+  .path-nodes{ flex-direction:column; align-items:stretch; gap:2px; }
+  .path-node{ width:auto; flex-direction:row; align-items:center; gap:14px; text-align:left;
+    padding:11px 0; border-bottom:1px solid var(--line-soft); }
+  .path-mark{ margin-bottom:0; flex:0 0 auto; }
+  .path-en{ margin-top:0; }
+  .path-read{ grid-template-columns:1fr; }
+  .path-hint{ display:none; }
+  .path-tabs{ margin-left:0; width:100%; overflow-x:auto; flex-wrap:nowrap;
+    scrollbar-width:none; padding-bottom:2px; }
+  .path-tabs::-webkit-scrollbar{ display:none; }
+  .path-tab{ flex:0 0 auto; }
+}
+@media (prefers-reduced-motion:reduce){
+  .path-line::after, .path-spark{ animation:none; }
+  .path-spark{ display:none; }
+  .path-read .lhs, .path-read .rhs{ transition:none; }
+}
+
+/* =====================================================================
+   障子 · THE SHOJI TAKEOVER
+   ---------------------------------------------------------------------
+   A case study does not open like a lightbox. Paper screens run across the
+   frame, meet in the middle, and then part again onto the study — the same
+   two moves a stage does, and the same two a shoji does. The wipe exists to
+   buy the swap: everything behind it is rebuilt in the half second the
+   screens are shut, so nothing is ever seen changing.
+
+   The scrim blurs rather than blacks out. The sanctuary is still rendering
+   underneath and a paper screen with a temple burning behind it is the whole
+   image; painting it out would throw away the one thing this page has.
+   ===================================================================== */
+.shoji{
+  position:fixed; inset:0; z-index:70; display:none;
+  --sj-wipe:560ms; --sj-part:720ms;
+}
+.shoji.live{ display:block; }
+html.shoji-open, html.shoji-open body{ overflow:hidden; }
+
+.sj-scrim{
+  position:absolute; inset:0; opacity:0; transition:opacity .5s var(--ease);
+  background:radial-gradient(120% 90% at 50% 44%, rgba(4,7,10,.62), rgba(3,5,8,.93) 72%);
+  -webkit-backdrop-filter:blur(26px) saturate(.74); backdrop-filter:blur(26px) saturate(.74);
+}
+.shoji.open .sj-scrim{ opacity:1; }
+/* The screens stay up for the whole wipe either way, and for most of a second
+   after a close. Nothing underneath them should be catching clicks or wheel
+   in that window, and nothing above them should either. */
+.shoji:not(.open) .sj-scrim, .shoji:not(.open) .sj-stage{ pointer-events:none; }
+/* The study is taken down in the half second the screens are shut over it, so
+   it has to go instantly rather than fade — a fade would still be running when
+   the screens part again, and would be seen through the opening. */
+.shoji.closing .sj-stage, .shoji.closing .sj-scrim{ transition:none; }
+
+/* — the screens themselves. Two leaves to a side, so each side closes as a
+     pair with the inner leaf a touch ahead: one flat slab reads as a wipe,
+     two reads as something being drawn shut by hand. */
+.sj-screens{ position:absolute; inset:0; pointer-events:none; }
+.sj-side{ position:absolute; top:0; bottom:0; width:50.4%; display:flex;
+  transition:transform var(--sj-part) var(--ease-out); will-change:transform; }
+.sj-side--l{ left:0; transform:translate3d(-100.4%,0,0); }
+.sj-side--r{ right:0; transform:translate3d(100.4%,0,0); }
+.shoji.shut .sj-side{ transform:translate3d(0,0,0); transition-duration:var(--sj-wipe);
+  transition-timing-function:var(--ease-io); }
+
+.sj-panel{
+  position:relative; flex:1 1 0; height:100%; --kx:46px; --ky:58px;
+  background:
+    linear-gradient(97deg, rgba(243,233,214,.052), rgba(243,233,214,.022) 46%, rgba(243,233,214,.046)),
+    linear-gradient(180deg, #0d1217, #0a0e13 52%, #11161b);
+  box-shadow:inset 0 0 120px rgba(0,0,0,.62);
+}
+/* kumiko — the lattice. Two repeating rules, the vertical one a shade
+   stronger, because a real grid is nailed to uprights. */
+.sj-panel::before{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    repeating-linear-gradient(90deg, rgba(223,231,224,.085) 0 1px, transparent 1px var(--kx)),
+    repeating-linear-gradient(0deg,  rgba(223,231,224,.055) 0 1px, transparent 1px var(--ky));
+}
+/* the lamp behind the paper */
+.sj-panel::after{
+  content:''; position:absolute; inset:0; pointer-events:none; mix-blend-mode:screen;
+  background:radial-gradient(70% 48% at var(--lx,50%) 38%, rgba(255,138,76,.13), rgba(214,58,34,.05) 46%, transparent 74%);
+}
+.sj-side--l .sj-panel:nth-child(1){ --lx:28%; }
+.sj-side--l .sj-panel:nth-child(2){ --lx:72%; }
+.sj-side--r .sj-panel:nth-child(1){ --lx:30%; }
+.sj-side--r .sj-panel:nth-child(2){ --lx:66%; }
+/* the stile between leaves, and the vermilion seam where the two sides meet */
+.sj-panel + .sj-panel{ border-left:1px solid rgba(223,231,224,.16); }
+.sj-side--l::after, .sj-side--r::after{
+  content:''; position:absolute; top:0; bottom:0; width:1px;
+  background:linear-gradient(transparent, rgba(224,35,28,.5) 30%, rgba(255,90,60,.62) 50%, rgba(224,35,28,.5) 70%, transparent);
+}
+.sj-side--l::after{ right:0; } .sj-side--r::after{ left:0; }
+
+/* — the study */
+.sj-stage{
+  position:absolute; inset:0; overflow-y:auto; overscroll-behavior:contain;
+  padding:calc(var(--nav-h) * .62) var(--pad) clamp(40px,7vh,88px);
+  opacity:0; transform:translate3d(0,16px,0);
+  transition:opacity .5s var(--ease), transform .7s var(--ease-out);
+}
+.shoji.open .sj-stage{ opacity:1; transform:none; transition-delay:.12s; }
+.sj-wrap{ max-width:1500px; margin:0 auto; }
+
+.sj-head{ display:flex; align-items:baseline; gap:clamp(12px,1.6vw,22px); flex-wrap:wrap;
+  padding-bottom:18px; border-bottom:1px solid var(--line-soft); margin-bottom:clamp(22px,3.4vh,40px); }
+.sj-ix{ font-size:10px; letter-spacing:.24em; color:var(--vermilion); font-variant-numeric:tabular-nums; }
+.sj-title{ font-size:clamp(21px,2.5vw,38px); text-transform:uppercase; letter-spacing:-.01em; line-height:1.05; }
+.sj-jp{ font-size:11px; letter-spacing:.34em; color:rgba(223,231,224,.55); }
+.sj-tools{ margin-left:auto; display:flex; align-items:center; gap:8px; }
+.sj-btn{
+  display:inline-grid; place-items:center; width:34px; height:34px; border-radius:50%;
+  border:1px solid var(--line); background:transparent; color:var(--bone); cursor:pointer;
+  transition:background .4s var(--ease), border-color .4s, transform .4s var(--ease-out);
+}
+.sj-btn svg{ width:13px; height:13px; }
+.sj-btn:hover:not(:disabled){ background:rgba(223,231,224,.09); border-color:rgba(223,231,224,.34); }
+.sj-btn:disabled{ opacity:.26; cursor:default; }
+.sj-btn--x{ margin-left:6px; }
+.sj-btn--x:hover{ background:var(--vermilion); border-color:var(--vermilion); }
+
+.sj-body{ display:grid; grid-template-columns:minmax(0,1.62fr) minmax(0,.84fr);
+  gap:clamp(20px,2.6vw,44px); align-items:start; }
+
+/* — the dossier rail */
+.sj-lead{ font-size:clamp(14px,1.02vw,16px); line-height:1.74; color:#bcc7bf; font-weight:300; }
+.sj-rail > * + *{ margin-top:clamp(20px,3vh,32px); }
+.sj-cap{ font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted);
+  display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.sj-cap::after{ content:''; flex:1 1 auto; height:1px; background:var(--line-soft); }
+.sj-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(92px,1fr)); gap:14px 18px; }
+.sj-stats div b{ display:block; font-size:clamp(19px,1.8vw,27px); font-weight:300;
+  letter-spacing:-.02em; color:var(--bone); font-variant-numeric:tabular-nums; }
+.sj-stats div span{ font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+.sj-tags{ display:flex; flex-wrap:wrap; gap:7px; }
+.sj-tags span{ font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--bone-dim);
+  padding:5px 11px; border:1px solid var(--line); }
+.sj-links{ display:flex; flex-wrap:wrap; gap:9px; }
+.sj-links a{ display:inline-flex; align-items:center; gap:9px; padding:9px 15px;
+  border:1px solid var(--line); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--bone); transition:background .4s var(--ease), border-color .4s; }
+.sj-links a:hover{ background:rgba(223,231,224,.08); border-color:rgba(223,231,224,.32); }
+.sj-links a svg{ width:11px; height:11px; }
+
+/* =====================================================================
+   THE PLAYER
+   ---------------------------------------------------------------------
+   The mount is empty on purpose. Until a reel is named in PROJECT_MEDIA the
+   screen holds a leader — countdown ring, frame counter, the path the file
+   is expected at — so the section reads as a cinema waiting for a print
+   rather than as something broken. Every control below is already wired; the
+   moment a src lands they drive it.
+   ===================================================================== */
+.kp{ position:relative; }
+.kp-screen{
+  position:relative; aspect-ratio:16/9; overflow:hidden; background:#06090c;
+  outline:1px solid var(--line); outline-offset:-1px;
+  box-shadow:0 48px 90px -44px rgba(0,0,0,.95);
+}
+.kp-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  display:none; background:#06090c; }
+.kp.has-src .kp-video{ display:block; }
+.kp-poster{ position:absolute; inset:0; background-size:cover; background-position:center;
+  transition:opacity .6s var(--ease); pointer-events:none; }
+.kp.playing .kp-poster{ opacity:0; }
+.kp-screen::after{ content:''; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(transparent 62%, rgba(4,6,9,.74)); opacity:0;
+  transition:opacity .4s var(--ease); }
+.kp.has-src .kp-screen::after{ opacity:1; }
+
+/* the big play target — a vermilion ring, the one warm thing on a cold plate */
+.kp-big{
+  position:absolute; inset:0; display:grid; place-items:center; z-index:3;
+  border:0; background:transparent; cursor:pointer; color:var(--bone);
+  transition:opacity .45s var(--ease);
+}
+.kp:not(.has-src) .kp-big{ display:none; }
+.kp.playing .kp-big{ opacity:0; pointer-events:none; }
+.kp-big i{ display:grid; place-items:center; width:clamp(58px,5.6vw,80px); aspect-ratio:1;
+  border-radius:50%; border:1px solid rgba(223,231,224,.34); background:rgba(4,7,10,.44);
+  -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px);
+  transition:transform .55s var(--ease-out), background .45s, border-color .45s; }
+.kp-big:hover i{ transform:scale(1.07); background:rgba(224,35,28,.34); border-color:rgba(255,90,60,.6); }
+.kp-big svg{ width:19px; height:19px; margin-left:3px; }
+
+/* — the leader: what sits here until a reel is mounted */
+.kp-slot{
+  position:absolute; inset:0; z-index:2; display:grid; place-content:center; justify-items:center;
+  gap:13px; text-align:center; padding:26px;
+  background:
+    radial-gradient(74% 56% at 50% 46%, rgba(224,35,28,.10), transparent 70%),
+    linear-gradient(150deg,#0b1116,#070a0e 58%,#140b0a);
+}
+.kp.has-src .kp-slot{ display:none; }
+.kp-lead{ position:relative; width:clamp(62px,6vw,86px); aspect-ratio:1; display:grid; place-items:center; }
+.kp-lead svg{ position:absolute; inset:0; width:100%; height:100%; transform:rotate(-90deg); }
+.kp-lead circle{ fill:none; stroke-width:1; }
+.kp-lead .t{ stroke:rgba(223,231,224,.14); }
+.kp-lead .p{ stroke:var(--vermilion); stroke-dasharray:296; stroke-dashoffset:74;
+  animation:lead-spin 3.4s linear infinite; }
+.kp-lead::before, .kp-lead::after{ content:''; position:absolute; background:rgba(223,231,224,.16); }
+.kp-lead::before{ left:8%; right:8%; height:1px; }
+.kp-lead::after{ top:8%; bottom:8%; width:1px; }
+.kp-lead b{ position:relative; font-size:clamp(17px,1.7vw,24px); font-weight:300;
+  color:var(--bone); font-variant-numeric:tabular-nums; }
+@keyframes lead-spin{ to{ transform:rotate(-90deg) rotate(360deg); } }
+/* direct child only — the leader's own 解 is a .jp too, and it is set large */
+.kp-slot > .jp{ font-size:11px; letter-spacing:.42em; color:rgba(223,231,224,.46); }
+.kp-slot b.hd{ font-size:12px; font-weight:400; letter-spacing:.2em; text-transform:uppercase; color:var(--bone-dim); }
+.kp-slot p{ max-width:46ch; font-size:12px; line-height:1.7; color:var(--muted); font-weight:300; }
+.kp-slot code{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11px;
+  color:var(--ember); background:rgba(224,35,28,.10); padding:2px 6px; }
+@media (prefers-reduced-motion:reduce){ .kp-lead .p{ animation:none; } }
+
+/* — captions ride inside the frame, above the foot gradient */
+.kp-caption{ position:absolute; left:6%; right:6%; bottom:5%; z-index:3; text-align:center;
+  font-size:clamp(12px,1vw,15px); line-height:1.5; color:#e6ece7; font-weight:300;
+  text-shadow:0 2px 14px rgba(0,0,0,.95); pointer-events:none; opacity:0;
+  transition:opacity .3s var(--ease); }
+.kp-caption.on{ opacity:1; }
+
+/* — the bar */
+.kp-bar{ padding:13px 0 0; }
+.kp-rail{
+  position:relative; height:16px; cursor:pointer; touch-action:none;
+  display:flex; align-items:center;
+}
+.kp-rail::before{ content:''; position:absolute; left:0; right:0; top:50%; margin-top:-1px;
+  height:2px; background:rgba(223,231,224,.12); }
+/* top is set rather than left to the flex line: an absolutely positioned flex
+   child takes its static position from align-items, which is not a promise */
+.kp-buf, .kp-fill{ position:absolute; left:0; right:0; top:50%; margin-top:-1px;
+  height:2px; transform-origin:0 50%; transform:scaleX(0); }
+.kp-buf{ background:rgba(223,231,224,.20); }
+.kp-fill{ background:linear-gradient(90deg,var(--vermilion),var(--ember)); }
+.kp-head{ position:absolute; top:50%; width:9px; height:9px; border-radius:50%;
+  background:var(--ember); box-shadow:0 0 0 4px rgba(224,35,28,.20);
+  transform:translate(-50%,-50%) scale(.1); transition:transform .3s var(--ease-out); }
+.kp-rail:hover .kp-head, .kp.scrubbing .kp-head{ transform:translate(-50%,-50%) scale(1); }
+.kp-tick{ position:absolute; top:50%; width:1px; height:9px; margin-top:-4px;
+  background:rgba(223,231,224,.40); pointer-events:none; }
+/* the hover read-out: chapter name and time, parked above the rail */
+.kp-peek{ position:absolute; bottom:20px; transform:translateX(-50%);
+  padding:6px 10px; background:rgba(5,8,11,.92); border:1px solid var(--line);
+  font-size:10px; letter-spacing:.1em; color:var(--bone); white-space:nowrap;
+  opacity:0; pointer-events:none; transition:opacity .25s var(--ease); }
+.kp-peek.on{ opacity:1; }
+.kp-peek i{ font-style:normal; color:var(--muted); margin-left:8px; font-variant-numeric:tabular-nums; }
+
+.kp-ctrls{ display:flex; align-items:center; gap:4px; margin-top:9px; }
+.kp-ctrls button{
+  display:inline-grid; place-items:center; min-width:30px; height:30px; padding:0 8px;
+  border:0; background:transparent; color:var(--bone-dim); cursor:pointer;
+  font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  transition:color .35s var(--ease), background .35s;
+}
+.kp-ctrls button:hover:not(:disabled){ color:var(--bone); background:rgba(223,231,224,.07); }
+.kp-ctrls button:disabled{ opacity:.3; cursor:default; }
+.kp-ctrls button.on{ color:var(--ember); }
+.kp-ctrls svg{ width:14px; height:14px; }
+.kp-time{ font-size:10px; letter-spacing:.1em; color:var(--muted);
+  font-variant-numeric:tabular-nums; padding:0 10px; }
+.kp-time b{ color:var(--bone-dim); font-weight:400; }
+.kp-gap{ flex:1 1 auto; }
+
+/* — chapters. Scene markers, and the only part of the study that is a list:
+     they are the spine of the explanation, so they read as one. */
+.kp-chapters{ list-style:none; margin:clamp(18px,2.6vh,28px) 0 0; padding:0;
+  border-top:1px solid var(--line-soft); }
+.kp-chapters li{ display:grid; grid-template-columns:40px minmax(0,1fr) auto; gap:14px;
+  align-items:baseline; padding:11px 0; border-bottom:1px solid var(--line-soft);
+  cursor:pointer; transition:padding-left .45s var(--ease-out), color .35s; }
+.kp-chapters li:hover{ padding-left:9px; }
+.kp-chapters li.on{ padding-left:9px; }
+.kp-chapters li.on .ct{ color:var(--bone); }
+.kp-chapters li.on .cn{ color:var(--vermilion); }
+.kp-chapters .cn{ font-size:10px; letter-spacing:.14em; color:var(--muted); font-variant-numeric:tabular-nums; }
+.kp-chapters .ct{ font-size:13px; font-weight:300; color:var(--bone-dim); }
+.kp-chapters .cd{ font-size:10px; letter-spacing:.1em; color:var(--muted); font-variant-numeric:tabular-nums; }
+.kp-keys{ margin-top:16px; font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.kp-keys kbd{ font:inherit; letter-spacing:.1em; color:var(--bone-dim);
+  border:1px solid var(--line); padding:2px 6px; margin:0 2px; }
+
+@media (max-width:1040px){
+  .sj-body{ grid-template-columns:1fr; }
+  .sj-rail{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:clamp(18px,3vw,30px); align-items:start; }
+  .sj-rail > * + *{ margin-top:0; }
+}
+@media (max-width:720px){
+  .sj-stage{ padding-top:76px; }
+  .sj-title{ width:100%; }
+  .sj-tools{ margin-left:0; width:100%; padding-top:10px; }
+  .kp-screen{ aspect-ratio:16/10; }
+  .kp-keys{ display:none; }
+  .sj-rail{ grid-template-columns:1fr; }
+}
+@media (prefers-reduced-motion:reduce){
+  /* .shoji.shut .sj-side also sets a duration, and it outranks a bare class */
+  .sj-side, .shoji.shut .sj-side{ transition-duration:1ms; }
+  .sj-stage{ transition:opacity .25s linear; transform:none; }
+  .shoji.open .sj-stage{ transform:none; }
+}
+
+/* fullscreen takes the whole player, not just the plate — a frame with its
+   own controls left behind on the page is not a fullscreen player */
+.kp:fullscreen{
+  background:#05070a; display:flex; flex-direction:column; justify-content:center;
+  padding:2vmin clamp(16px,5vw,80px);
+}
+.kp:fullscreen .kp-screen{
+  margin:0 auto; width:min(100%, calc(82vh * 16 / 9)); max-height:82vh;
+  box-shadow:none; outline:0;
+}
+.kp:fullscreen .kp-bar{ max-width:min(100%, calc(82vh * 16 / 9)); margin:0 auto; width:100%; }
+.kp:fullscreen .kp-chapters, .kp:fullscreen .kp-keys{ display:none; }
 
 /* — chapter III: curriculum */
 .cur-head{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.72fr); gap:clamp(28px,5vw,90px); align-items:end; margin-bottom:clamp(34px,6vh,72px); }
@@ -510,7 +1035,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   .chapters{ grid-template-columns:repeat(2,1fr); gap:18px 14px; }
   .chip p{ font-size:10px; }
   .cards{ grid-template-columns:1fr; gap:14px; }
-  .card:nth-child(2),.card:nth-child(3){ transform:none; }
+  .card:nth-child(2),.card:nth-child(3),.card:nth-child(4){ transform:none; }
   .gate-stats{ flex-wrap:wrap; gap:20px 34px; }
   .foot-grid{ grid-template-columns:1fr; }
   .hero-cue{ display:none; }
@@ -571,19 +1096,27 @@ body[data-layout-story="b"] .gate-stats{ display:grid; grid-template-columns:rep
 body[data-layout-story="b"] .gate-stats div{ min-height:108px; padding:18px; border-left:1px solid var(--line-soft); }
 body[data-layout-story="b"] .gate-stats div:last-child{ border-right:1px solid var(--line-soft); }
 
-/* — gardens B · mosaic: one immersive live window beside two stacked ones.
-     The cards stretch to their rows and the frames flex, so the two small
-     viewports meet the tall one exactly instead of drifting apart. */
+/* — gardens B · mosaic: one immersive live window beside a stack of them.
+     The cards stretch to their rows and the frames flex, so the small
+     viewports meet the tall one exactly instead of drifting apart.
+
+     The stack went from two to three when GRIIT was added, and the tall
+     plate grew with it: held at the old height the three beside it would
+     have been driven under their own 200px floor, and the column would
+     have overrun the plate it is supposed to line up with. */
 body[data-layout-gallery="b"] .cards{
   grid-template-columns:minmax(0,1.55fr) minmax(260px,.75fr);
-  grid-template-rows:repeat(2,minmax(0,1fr));
+  grid-template-rows:repeat(3,minmax(0,1fr));
   gap:14px; align-items:stretch;
 }
 body[data-layout-gallery="b"] .card{ transform:none; display:flex; flex-direction:column; min-height:0; }
 body[data-layout-gallery="b"] .card-fr{ aspect-ratio:auto; flex:1 1 auto; min-height:0; }
-body[data-layout-gallery="b"] .card:first-child{ grid-row:1 / 3; }
-body[data-layout-gallery="b"] .card:first-child .card-fr{ flex:0 0 auto; height:min(72vh,760px); }
-body[data-layout-gallery="b"] .card:not(:first-child) .card-fr{ min-height:200px; }
+body[data-layout-gallery="b"] .card:first-child{ grid-row:1 / 4; }
+body[data-layout-gallery="b"] .card:first-child .card-fr{ flex:0 0 auto; height:min(84vh,900px); }
+/* three to the column now, not two: the old 200px floor is taller than a
+   third of the plate on a short viewport, and a floor that cannot be met
+   pushes the stack past the plate it is meant to finish level with. */
+body[data-layout-gallery="b"] .card:not(:first-child) .card-fr{ min-height:150px; }
 
 /* — chapters B · atlas: a two-then-three plate grid instead of a syllabus.
      Number and title sit at the top of each plate, the running time drops to
@@ -950,9 +1483,9 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
       <div class="chip" data-chip="0" data-rv="up" data-cursor><span class="num">01</span>
         <span class="tx"><b>About</b><p>AI & ML Engineer with CTO experience and 8.87 CGPA at SRM KTR.</p></span></div>
       <div class="chip" data-chip="1" data-rv="up" data-cursor><span class="num">02</span>
-        <span class="tx"><b>Projects</b><p>MLOps, forecasting, and carbon-impact AI systems.</p></span></div>
+        <span class="tx"><b>Projects</b><p>MLOps, forecasting, model robustness, and sports-analytics AI systems.</p></span></div>
       <div class="chip" data-chip="2" data-rv="up" data-cursor><span class="num">03</span>
-        <span class="tx"><b>Experience</b><p>CTO at Goldielocks Zone, building production AI products.</p></span></div>
+        <span class="tx"><b>Experience</b><p>CTO at CourierX, building production AI products.</p></span></div>
       <div class="chip" data-chip="3" data-rv="up" data-cursor><span class="num">04</span>
         <span class="tx"><b>Contact</b><p>Open to AI Engineer and Full-Stack GenAI roles in India.</p></span></div>
     </div>
@@ -1030,30 +1563,83 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <span class="k"><b>02</b> — Notable Projects</span><span class="rule"></span><span class="k jp">作品</span>
   </div>
   <div class="cards" id="cards">
-    <article class="card" data-rv="up" data-view="0" data-cursor>
+    <article class="card" data-rv="up" data-view="0" data-cursor
+             data-project="mlops" role="button" tabindex="0"
+             aria-label="Open the case study for ML Auto-Retraining">
       <div class="card-fr" data-frame>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        <span class="card-tag"><i></i>Explainer · 解説</span>
         <i class="glow" style="--gx:80.2%; --gy:23.9%; --gr:22%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(255,142,108,.50); --gc2:rgba(212,56,38,.24)"></i>
         <div class="card-lab"><b>ML Auto-Retraining</b><span class="jp">MLOps</span></div>
       </div>
-      <div class="card-meta"><span>59× faster drift detection · RAPIDS cuDF/cuML</span><span>01 / 03</span></div>
+      <div class="card-meta"><span>59× faster drift detection · RAPIDS cuDF/cuML</span><span>01 / 04</span></div>
     </article>
-    <article class="card" data-rv="up" data-view="1" data-cursor>
+    <article class="card" data-rv="up" data-view="1" data-cursor
+             data-project="forecast" role="button" tabindex="0"
+             aria-label="Open the case study for E-Commerce Forecast">
       <div class="card-fr" data-frame>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        <span class="card-tag"><i></i>Explainer · 解説</span>
         <i class="glow glow--flame" style="--gx:70.5%; --gy:47.2%; --gr:14%; --gt:3.7s; --gt2:5.3s; --gc1:rgba(255,198,124,.62); --gc2:rgba(226,118,40,.30)"></i>
         <div class="card-lab"><b>E-Commerce Forecast</b><span class="jp">予測</span></div>
       </div>
-      <div class="card-meta"><span>Scalable sales prediction · SQL integration</span><span>02 / 03</span></div>
+      <div class="card-meta"><span>Scalable sales prediction · SQL integration</span><span>02 / 04</span></div>
     </article>
-    <article class="card" data-rv="up" data-view="2" data-cursor>
+    <article class="card" data-rv="up" data-view="4" data-cursor
+             data-project="griit" role="button" tabindex="0"
+             aria-label="Open the case study for GRIIT">
       <div class="card-fr" data-frame>
                 <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-        <i class="glow" style="--gx:48.0%; --gy:16.8%; --gr:20%; --gt:7.3s; --gt2:11.2s; --gc1:rgba(255,138,104,.52); --gc2:rgba(208,54,36,.24)"></i>
-        <div class="card-lab"><b>Synth-AI Carbon</b><span class="jp">環境</span></div>
+        <span class="card-tag"><i></i>Explainer · 解説</span>
+        <i class="glow glow--flame" style="--gx:33.5%; --gy:56.5%; --gr:11%; --gt:4.3s; --gt2:6.1s; --gc1:rgba(255,205,138,.60); --gc2:rgba(224,124,44,.26)"></i>
+        <div class="card-lab"><b>GRIIT Robustness</b><span class="jp">鍛錬</span></div>
       </div>
-      <div class="card-meta"><span>Carbon-impact scoring · Anomaly detection</span><span>03 / 03</span></div>
+      <div class="card-meta"><span>Post-training hardening · Auto edge-case synthesis</span><span>03 / 04</span></div>
     </article>
+    <article class="card" data-rv="up" data-view="2" data-cursor
+             data-project="goaltrace" role="button" tabindex="0"
+             aria-label="Open the case study for GoalTrace">
+      <div class="card-fr" data-frame>
+                <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+        <span class="card-tag"><i></i>Explainer · 解説</span>
+        <i class="glow" style="--gx:62.0%; --gy:38.5%; --gr:17%; --gt:5.6s; --gt2:8.4s; --gc1:rgba(255,150,112,.50); --gc2:rgba(210,60,40,.24)"></i>
+        <div class="card-lab"><b>GoalTrace</b><span class="jp">貢献</span></div>
+      </div>
+      <div class="card-meta"><span>Goal credit attribution · 635k tracked rows</span><span>04 / 04</span></div>
+    </article>
+  </div>
+
+  <!-- ====================================================== 経路 · the path
+       The pipeline of whichever project the reader is standing on, drawn as
+       a lantern path with a torch they carry along it. wirePath() fills the
+       stations and the readout out of PROJECTS[].pipeline. -->
+  <div class="path" id="path" data-rv="fade">
+    <div class="path-head">
+      <span class="k"><b>02.1</b> — The Path</span>
+      <span class="rule"></span>
+      <div class="path-tabs" id="path-tabs" role="tablist" aria-label="Choose a project"></div>
+    </div>
+
+    <div class="path-rail" id="path-rail">
+      <div class="path-line" aria-hidden="true"></div>
+      <i class="path-spark" aria-hidden="true"></i>
+      <i class="path-spark" aria-hidden="true"></i>
+      <i class="path-torch" id="path-torch" aria-hidden="true"></i>
+      <div class="path-nodes" id="path-nodes" role="tablist" aria-label="Pipeline stages"></div>
+    </div>
+
+    <div class="path-read" id="path-read">
+      <div class="lhs">
+        <span class="path-ix" id="path-ix">01 / 05</span>
+        <h3 class="path-name" id="path-name"><span class="jp"></span></h3>
+      </div>
+      <div class="rhs">
+        <p class="path-note" id="path-note"></p>
+        <div class="path-tech" id="path-tech"></div>
+      </div>
+    </div>
+
+    <p class="path-hint">Drag the torch along the path · <kbd>&larr;</kbd><kbd>&rarr;</kbd> step a stage · <kbd>1</kbd>&ndash;<kbd>5</kbd> jump · pick a project above, or hover its plate</p>
   </div>
 </section>
 
@@ -1081,13 +1667,13 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   <div class="cur" id="cur">
     <div class="les" data-les="0" data-cursor>
       <span class="k">01</span>
-      <h3>CTO — Goldielocks Zone<em class="jp">2024–Now</em></h3>
+      <h3>CTO — CourierX<em class="jp">2024–Aug 2026</em></h3>
       <p>Led 4 engineers, 3+ AI SaaS products, 40% faster deployment, 99% uptime, LangChain RAG pipelines.</p>
       <span class="t">Chennai</span><i class="bar"></i>
     </div>
     <div class="les" data-les="1" data-cursor>
       <span class="k">02</span>
-      <h3>Coordinator — Adisutra<em class="jp">2023–Now</em></h3>
+      <h3>Coordinator — Adisutra<em class="jp">2023–Aug 2026</em></h3>
       <p>Built production e-commerce platform from scratch — UI, SEO, product pages, conversion optimization.</p>
       <span class="t">Remote</span><i class="bar"></i>
     </div>
@@ -1158,7 +1744,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
         <circle cx="22" cy="25" r="8.6" fill="#e0231c" fill-opacity=".9"/>
         <path d="M5 13h34M9 18.4h26M22 8.5v27" stroke="#dfe7e0" stroke-width="1.5"/>
       </svg>
-      <p>Jagannath Samartha Mishra — AI & ML Engineer, Full-Stack Developer, CTO at Goldielocks Zone. Building production-grade GenAI systems and scalable applications.</p>
+      <p>Jagannath Samartha Mishra — AI & ML Engineer, Full-Stack Developer, CTO at CourierX. Building production-grade GenAI systems and scalable applications.</p>
     </div>
     <div><h4>Navigate</h4><ul>
       <li><a href="#gate" data-cursor>About</a></li>
@@ -1193,6 +1779,125 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 <div id="fg-sky" aria-hidden="true"></div>
 
 <div class="rail" id="rail"></div>
+
+<!-- ============================================================= 障子
+     The case-study takeover. It lives out here beside #fg-sky for the same
+     reason that does: .page is a stacking context at z-index 10, and paper
+     screens that cannot cross the nav are not paper screens.
+
+     Everything textual below is a placeholder — wireShoji() writes the live
+     copy out of PROJECTS the moment a card is opened. -->
+<div class="shoji" id="shoji" role="dialog" aria-modal="true" aria-labelledby="sj-title" aria-hidden="true">
+  <div class="sj-scrim"></div>
+
+  <div class="sj-screens" aria-hidden="true">
+    <div class="sj-side sj-side--l"><div class="sj-panel"></div><div class="sj-panel"></div></div>
+    <div class="sj-side sj-side--r"><div class="sj-panel"></div><div class="sj-panel"></div></div>
+  </div>
+
+  <!-- data-lenis-prevent: the study scrolls natively inside itself, and Lenis
+       would otherwise keep the wheel for the page it is covering -->
+  <div class="sj-stage" id="sj-stage" data-lenis-prevent>
+   <div class="sj-wrap">
+    <header class="sj-head">
+      <span class="sj-ix" id="sj-ix">01 / 04</span>
+      <h3 class="sj-title display" id="sj-title">Project</h3>
+      <span class="sj-jp jp" id="sj-jp"></span>
+      <div class="sj-tools">
+        <button class="sj-btn" id="sj-prev" type="button" aria-label="Previous project (bracket left)">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M9 2 4 7l5 5" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+        <button class="sj-btn" id="sj-next" type="button" aria-label="Next project (bracket right)">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+        <button class="sj-btn sj-btn--x" id="sj-close" type="button" aria-label="Close the case study (escape)">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.3"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="sj-body">
+      <div class="sj-main">
+        <!-- ======================================================= player -->
+        <div class="kp" id="kp">
+          <div class="kp-screen">
+            <video class="kp-video" id="kp-video" playsinline preload="metadata"></video>
+            <div class="kp-poster" id="kp-poster"></div>
+
+            <!-- the leader: what the frame holds until a reel is mounted -->
+            <div class="kp-slot">
+              <span class="kp-lead">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                  <circle class="t" cx="50" cy="50" r="47"/>
+                  <circle class="p" cx="50" cy="50" r="47"/>
+                </svg>
+                <b class="jp">解</b>
+              </span>
+              <span class="jp">準備中</span>
+              <b class="hd">Explainer reel not mounted</b>
+              <p id="kp-slot-path">Drop the clip in <code>media/</code> and name it in <code>PROJECTS</code>, near the top of the page script.</p>
+            </div>
+
+            <button class="kp-big" id="kp-big" type="button" aria-label="Play the explainer">
+              <i><svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 2l14 8-14 8z"/></svg></i>
+            </button>
+            <div class="kp-caption" id="kp-caption"></div>
+          </div>
+
+          <div class="kp-bar">
+            <div class="kp-rail" id="kp-rail" role="slider" tabindex="0"
+                 aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <i class="kp-buf"  id="kp-buf"></i>
+              <i class="kp-fill" id="kp-fill"></i>
+              <i class="kp-head" id="kp-head"></i>
+              <div id="kp-ticks"></div>
+              <div class="kp-peek" id="kp-peek"></div>
+            </div>
+            <div class="kp-ctrls">
+              <button id="kp-toggle" type="button" aria-label="Play or pause">
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 2l11 6-11 6z"/></svg>
+              </button>
+              <span class="kp-time"><b id="kp-cur">0:00</b> / <span id="kp-dur">0:00</span></span>
+              <span class="kp-gap"></span>
+              <button id="kp-rate" type="button" aria-label="Playback speed">1&times;</button>
+              <button id="kp-cc" type="button" aria-label="Captions">CC</button>
+              <button id="kp-mute" type="button" aria-label="Mute">
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M7 3 4 6H2v4h2l3 3zM10.4 5.2a4 4 0 0 1 0 5.6l-.9-.9a2.8 2.8 0 0 0 0-3.8zM12.2 3.4a6.4 6.4 0 0 1 0 9.2l-.9-.9a5.1 5.1 0 0 0 0-7.4z"/></svg>
+              </button>
+              <button id="kp-full" type="button" aria-label="Fullscreen">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6V2h4M14 10v4h-4M14 6V2h-4M2 10v4h4"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <ol class="kp-chapters" id="kp-chapters"></ol>
+          <p class="kp-keys">
+            <kbd>Space</kbd> play <kbd>&larr;</kbd><kbd>&rarr;</kbd> 5s
+            <kbd>M</kbd> mute <kbd>F</kbd> full
+            <kbd>[</kbd><kbd>]</kbd> project <kbd>Esc</kbd> close
+          </p>
+        </div>
+      </div>
+
+      <aside class="sj-rail">
+        <div>
+          <div class="sj-cap">The brief</div>
+          <p class="sj-lead" id="sj-lead"></p>
+        </div>
+        <div>
+          <div class="sj-cap">What it moved</div>
+          <div class="sj-stats" id="sj-stats"></div>
+        </div>
+        <div>
+          <div class="sj-cap">Built with</div>
+          <div class="sj-tags" id="sj-tags"></div>
+        </div>
+        <div class="sj-links" id="sj-links"></div>
+      </aside>
+    </div>
+   </div>
+  </div>
+</div>
 
 <script src="secret-pathways-assets/three.min.js"></script>
 <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
@@ -4441,7 +5146,8 @@ function buildCards() {
     { p: [-2.0, 1.60, -2.0], t: [0, 10.0, -34.0], fov: 40 },    /* the long climb */
     { p: [4.2, 2.90, -9.5], t: [6.4, 2.90, -14.4], fov: 40 },   /* lantern court  */
     { p: [3.4, 2.40, 2.0], t: [-1.0, -.60, -6.0], fov: 40 },    /* the wet court  */
-    { p: [0.6, 3.40, -12.0], t: [0, 12.0, -40.0], fov: 26 }     /* hero window    */
+    { p: [0.6, 3.40, -12.0], t: [0, 12.0, -40.0], fov: 26 },    /* hero window    */
+    { p: [-3.2, 3.40, -11.0], t: [0, 11.0, -38.0], fov: 30 }    /* the hall, off-axis */
   ];
   $$('[data-view]').forEach(el => {
     const d = defs[+el.dataset.view]; if (!d) return;
@@ -4697,6 +5403,767 @@ function frame(now) {
 const TIMER = qs('driver', 'raf') === 'timer';
 function queue() { TIMER ? setTimeout(() => frame(performance.now()), 16) : requestAnimationFrame(frame); }
 
+/* ============================================ 15 · the case studies
+   ---------------------------------------------------------------------
+   ▶ TO MOUNT AN EXPLAINER REEL
+     Put the file in  media/  and give this entry a src. Nothing else needs
+     to change — the player, the scrubber, the chapter ticks and the caption
+     line are already wired and switch themselves on the moment a src exists.
+
+       src      'media/mlops.mp4'   · mp4 (h.264) or webm. Keep it ≤ 1080p.
+       poster   'media/mlops.webp'  · the still behind the play ring.
+       captions 'media/mlops.vtt'   · optional WebVTT; the CC button appears.
+       chapters [{ t: seconds, label: '…' }] · drives the ticks and the list.
+
+     Chapters are honoured with or without a reel, so the study still reads
+     as a study while the films are being cut. `runtime` is what the card
+     badge and the leader advertise.
+   ------------------------------------------------------------------ */
+const PROJECTS = [
+  {
+    id: 'mlops', view: 0,
+    title: 'ML Auto-Retraining', jp: 'MLOps',
+    lead: 'A retraining loop that watches its own data. Drift is scored on the GPU with RAPIDS cuDF and cuML, and when a feature distribution slips past tolerance the pipeline rebuilds, validates and promotes the model without anyone being paged.',
+    runtime: '0:23', /* shown on the card badge */
+    stats: [
+      { n: '59×',   k: 'Faster drift scan' },
+      { n: '< 4m',  k: 'Detect → promote' },
+      { n: '0',     k: 'Manual retrains' }
+    ],
+    tags: ['Python', 'RAPIDS cuDF', 'cuML', 'MLflow', 'Airflow', 'Docker'],
+    links: [{ label: 'Source', href: 'https://github.com/loadingscreen78/ADS' }],
+    pipeline: [
+      { jp: '取込', en: 'Ingest', tech: 'Airflow · Parquet',
+        note: 'Feature rows land from the warehouse on an hourly schedule. Schema is asserted on arrival, so a silently renamed column fails here rather than three stages downstream as a confusing metric.' },
+      { jp: '監視', en: 'Drift Watch', tech: 'RAPIDS cuDF · <b>59× faster</b>',
+        note: 'Population stability index per feature, scored on the GPU. The pass that took four minutes in pandas takes four seconds in cuDF — which is what makes hourly checking affordable at all.' },
+      { jp: '再訓練', en: 'Retrain', tech: 'cuML · Optuna',
+        note: 'Past tolerance and the trainer wakes on its own. The last good hyperparameters are the starting point rather than a fresh search, so a routine refresh costs minutes instead of a night.' },
+      { jp: '検証', en: 'Validate', tech: 'MLflow · frozen slice',
+        note: 'The challenger is held against the incumbent on a slice that never moves. It has to win on the metric that pays, not on training loss — a model that improves loss and worsens revenue is a regression.' },
+      { jp: '昇格', en: 'Promote', tech: 'MLflow Registry · blue/green',
+        note: 'A winner is signed, versioned and swapped in behind the serving flag. A loser is archived together with the reason it lost, so the same dead end is not explored twice.' }
+    ],
+    media: {
+      src: 'media/mlops.mp4', poster: 'media/mlops.webp', captions: '',
+      chapters: [
+        { t: 0,    label: 'The problem: models get worse quietly' },
+        { t: 4.5,  label: 'Meet CARA' },
+        { t: 7.5,  label: 'Drift counts only when both tests agree' },
+        { t: 12,   label: 'CARA weighs the context' },
+        { t: 17.5, label: 'Seeing drift coming, keeping it fair' }
+      ]
+    }
+  },
+  {
+    id: 'forecast', view: 1,
+    title: 'E-Commerce Forecast', jp: '予測',
+    lead: 'Demand forecasting that reads straight off the warehouse. Seasonality, promotions and stock-outs are modelled per SKU, and the result is written back to SQL so the planning tools consume it without an export step.',
+    runtime: '',
+    stats: [
+      { n: '12%',  k: 'MAPE reduction' },
+      { n: '40k',  k: 'SKUs per run' },
+      { n: 'Live', k: 'SQL write-back' }
+    ],
+    tags: ['Python', 'XGBoost', 'Prophet', 'PostgreSQL', 'pandas'],
+    links: [{ label: 'Source', href: '#' }],
+    pipeline: [
+      { jp: '抽出', en: 'Extract', tech: 'PostgreSQL',
+        note: 'Orders, promotions and stock-outs pulled per SKU. A stock-out is the absence of a demand signal, not the absence of demand — it is labelled as such, because dropping those rows teaches the model that the shelf was simply unpopular.' },
+      { jp: '特徴', en: 'Features', tech: 'pandas · per-category seasonality',
+        note: 'Calendar, promotion and lag features. Seasonality is fitted per category rather than globally, because a coat and a kettle do not share a year and averaging them gives a shape that fits neither.' },
+      { jp: '予測', en: 'Forecast', tech: 'XGBoost · Prophet',
+        note: 'Gradient boosting over the engineered set, with Prophet carrying the long seasonal term. The split keeps the tree model free to learn promotions instead of spending its depth re-deriving December.' },
+      { jp: '照合', en: 'Reconcile', tech: 'hierarchical reconciliation',
+        note: 'SKU forecasts are summed to category and region and forced to agree. A planner will not trust a total that does not match its parts, however good the individual numbers are.' },
+      { jp: '書戻', en: 'Write-back', tech: 'PostgreSQL · <b>40k SKUs</b>',
+        note: 'Written straight back into the warehouse. The planning tools read a table rather than a CSV export that somebody has to remember to run, which is the difference between a model and a system.' }
+    ],
+    media: {
+      src: '', poster: '', captions: '',
+      chapters: [
+        { t: 0,  label: 'Why a spreadsheet stopped working' },
+        { t: 34, label: 'Features that carry the season' },
+        { t: 82, label: 'Writing back into the warehouse' }
+      ]
+    }
+  },
+  {
+    id: 'griit', view: 4,
+    title: 'GRIIT', jp: '鍛錬',
+    lead: 'A post-training system that hardens a model nobody has deployed yet. GRIIT probes a trained model for the failures its test set never contained — low light, blur, typos, dropped frames, unseen categories — synthesises the cases that break it, retrains on those, and refuses to ship anything that cost the baseline to get there.',
+    runtime: '0:23',
+    stats: [
+      { n: '+34', k: 'Edge-case accuracy' },
+      { n: '86',  k: 'Readiness score' },
+      { n: '4',   k: 'Modalities' }
+    ],
+    tags: ['Python 3.8+', 'PyTorch', 'TensorFlow', 'Keras', 'scikit-learn', 'XGBoost'],
+    links: [{ label: 'Source', href: 'https://github.com/loadingscreen78/GRIIT-Guided-Robustness-Integrated-Intelligence-Training' }],
+    pipeline: [
+      { jp: '診断', en: 'Diagnose', tech: 'decision boundaries · calibration',
+        note: 'The model is inspected before it is judged — decision boundaries, confidence calibration, which features it actually leans on. The question is not what it scores but what it learned, and those are rarely the same answer.' },
+      { jp: '生成', en: 'Generate', tech: 'Vision · Text · Video · Tabular',
+        note: 'Stress vectors are built to suit the modality: fog, low light, motion blur and occlusion for vision; typos, case and emoji for text; dropped frames and compression for video; nulls, outliers and unseen categories for tabular.' },
+      { jp: '試練', en: 'Stress-test', tech: 'grouped failures · <b>18.4%</b> surfaced',
+        note: 'Failures are grouped into named categories rather than counted. “Low-light side collisions” is something an engineer can go and fix; an 18.4% failure rate is only something to be alarmed by.' },
+      { jp: '鍛錬', en: 'Temper', tech: 'curriculum learning · <b>54% → 88%</b>',
+        note: 'Curriculum and adaptive fine-tuning on the failure cases themselves. On the dashcam detector GRIIT was built against, edge-case accuracy moved from 54% to 88% and real-world robustness from 61% to 89%.' },
+      { jp: '関門', en: 'Gate', tech: 'auto-rollback · <b>min_baseline_accuracy</b>',
+        note: 'Nothing ships that costs the baseline. If tempering induces catastrophic forgetting or drops core accuracy past the configured floor, the run is rolled back on its own — 94% to 93% was the entire price of the gain above it.' }
+    ],
+    media: {
+      src: 'media/griit.mp4', poster: 'media/griit.webp', captions: '',
+      chapters: [
+        { t: 0,    label: 'It passed every test. Then it met fog.' },
+        { t: 7,    label: 'Stress-testing every kind of input' },
+        { t: 12.5, label: 'Retraining on its own failures' },
+        { t: 16.5, label: 'Rolling back when accuracy drops' }
+      ]
+    }
+  },
+  {
+    id: 'goaltrace', view: 2,
+    title: 'GoalTrace', jp: '貢献',
+    lead: 'Credit attribution for football goals, built on SoccerNet broadcast tracking. GoalTrace loads 58 match sequences into SQLite, detects every touch from the ball’s own physics, and splits each goal across carry, pass, shot and off-ball work — so the decoy run that opened the space earns a share, not just the finish.',
+    runtime: '0:21',
+    stats: [
+      { n: '635k',  k: 'Player-frame rows' },
+      { n: '1,220', k: 'Player tracks' },
+      { n: '110',   k: 'Touches detected' },
+      { n: '10/10', k: 'Tests passing' }
+    ],
+    tags: ['Python', 'SoccerNet-GSR', 'SQLite', 'NumPy', 'pandas', 'OpenCV'],
+    links: [{ label: 'GitHub', href: 'https://github.com/loadingscreen78' }],
+    pipeline: [
+      { jp: '追跡', en: 'Track', tech: 'SoccerNet-GSR · <b>58</b> sequences · 1,220 tracks',
+        note: 'Broadcast game-state tracks are projected onto pitch metres and smoothed. Speed is derived per frame, and anything above 5.5 m/s is flagged as high-intensity running — the raw material for off-ball credit later.' },
+      { jp: '記録', en: 'Store', tech: 'SQLite · <b>635,326</b> player-frame rows',
+        note: 'Every player position lands as a row — frame, track, team, x, y, speed — alongside 40,900 ball frames. The build-up to a goal becomes something to query rather than something to rewatch.' },
+      { jp: '接触', en: 'Touch', tech: 'ball physics · <b>110</b> touches',
+        note: 'A touch is a ball speed change of 3 m/s or a 35° turn, given to the nearest player within 3 m. Ball fixes that imply more than 40 m/s or leave the pitch are thrown out first — one long ball had been projected to y = −357 m.' },
+      { jp: '分配', en: 'Credit', tech: 'carry · pass · shot · off-ball · <b>15 s</b> windows',
+        note: 'The 15 seconds before each goal are scored against a threat surface in four components. Off-ball credit counts high-intensity running weighted by ball proximity and threat, so a decoy run earns a share without ever touching the ball.' },
+      { jp: '監査', en: 'Audit', tech: '<b>10/10</b> tests · frozen v2 · A/B/C grades',
+        note: 'The formula is frozen by hash and pinned with a regression snapshot; invariant tests check that shares sum to 100% or are withheld. Each goal carries an evidence grade, and known misattributions are logged rather than tuned away.' }
+    ],
+    media: {
+      src: 'media/goaltrace.mp4', poster: 'media/goaltrace.webp', captions: '',
+      chapters: [
+        { t: 0,    label: 'One goal, one name on the scoresheet' },
+        { t: 5.5,  label: 'Splitting credit across everyone involved' },
+        { t: 10,   label: 'From match video into SQLite' },
+        { t: 14.5, label: 'Explainable. Tested. Audited.' }
+      ]
+    }
+  }
+];
+
+/* ------------------------------------------------------------ the path
+   The stations are laid out by flex, so where each one actually sits is a
+   measured fact rather than a calculable one. Everything — the torch, the
+   hit testing, the keyboard — reads off that one measurement, and it is
+   retaken on resize and whenever the pipeline changes. */
+function wirePath() {
+  const root = $('#path'); if (!root) return;
+  const rail = $('#path-rail'), nodesEl = $('#path-nodes'), torch = $('#path-torch');
+  const ixEl = $('#path-ix'), nameEl = $('#path-name');
+  const noteEl = $('#path-note'), techEl = $('#path-tech'), tabsEl = $('#path-tabs');
+
+  let proj = -1, steps = [], marks = [], pos = [], at = -1;
+  let drifting = !REDUCE && !COARSE, inView = false, raf = 0, t = 0, swapT = 0;
+
+  /* --------------------------------------------------------- measuring */
+  function measurePath() {
+    const r = rail.getBoundingClientRect();
+    pos = marks.map(m => {
+      const b = m.getBoundingClientRect();
+      return b.left - r.left + b.width / 2;
+    });
+  }
+  const spanPx = () => (pos.length > 1 ? pos[pos.length - 1] - pos[0] : 0);
+
+  /* ------------------------------------------------------ the readout */
+  function render(i) {
+    if (i === at || !steps[i]) return;
+    at = i;
+    const s = steps[i];
+    /* the swap is a beat of nothing rather than a crossfade — two sets of
+       words dissolving through each other is unreadable at this size */
+    root.classList.add('swapping');
+    clearTimeout(swapT);
+    swapT = setTimeout(() => {
+      ixEl.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(steps.length).padStart(2, '0');
+      nameEl.innerHTML = '<span class="jp"></span>';
+      nameEl.firstChild.textContent = s.jp;
+      nameEl.appendChild(document.createTextNode(s.en));
+      noteEl.textContent = s.note;
+      techEl.innerHTML = s.tech;          /* authored copy, <b> is deliberate */
+      root.classList.remove('swapping');
+    }, REDUCE ? 0 : 190);
+    nodesEl.querySelectorAll('.path-node').forEach((n, k) => {
+      n.classList.toggle('on', k === i);
+      n.classList.toggle('past', k < i);
+      n.setAttribute('aria-selected', String(k === i));
+      n.tabIndex = k === i ? 0 : -1;
+    });
+  }
+
+  /* t is 0..1 along the whole path; the torch rides it and the nearest
+     station is the one being explained */
+  function place(nt) {
+    t = clamp(nt, 0, 1);
+    if (!pos.length) return;
+    torch.style.left = (pos[0] + t * spanPx()).toFixed(1) + 'px';
+    let best = 0, bd = Infinity;
+    const x = pos[0] + t * spanPx();
+    pos.forEach((p, i) => { const d = Math.abs(p - x); if (d < bd) { bd = d; best = i; } });
+    render(best);
+  }
+  /* Choosing a station by name is exact, so it does not go through place():
+     stacked on a narrow screen every marker shares an x, and asking which one
+     the torch is nearest would answer "the first" every time. */
+  const toStep = i => {
+    const n = (i + steps.length) % steps.length;
+    t = steps.length > 1 ? n / (steps.length - 1) : 0;
+    if (pos.length) torch.style.left = pos[n].toFixed(1) + 'px';
+    render(n);
+  };
+
+  /* ------------------------------------------------------- the stations */
+  function build(p) {
+    steps = p.pipeline || [];
+    nodesEl.innerHTML = ''; marks = []; at = -1;
+    steps.forEach((s, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'path-node'; b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', s.en + ' — stage ' + (i + 1) + ' of ' + steps.length);
+      b.innerHTML = '<span class="path-mark"></span><span class="path-jp"></span><span class="path-en"></span>';
+      b.querySelector('.path-jp').textContent = s.jp;
+      b.querySelector('.path-en').textContent = s.en;
+      b.addEventListener('click', () => { drifting = false; toStep(i); });
+      b.addEventListener('pointerenter', () => { if (!COARSE) { drifting = false; toStep(i); } });
+      nodesEl.appendChild(b);
+      marks.push(b.querySelector('.path-mark'));
+    });
+    measurePath();
+    place(0);
+    root.classList.add('lit');
+  }
+
+  function select(i) {
+    if (i === proj) return;
+    proj = i;
+    build(PROJECTS[i]);
+    $$('.card[data-project]').forEach(c => c.classList.toggle('sel', c.dataset.project === PROJECTS[i].id));
+    [].slice.call(tabsEl.children).forEach((b, k) => {
+      b.classList.toggle('on', k === i);
+      b.setAttribute('aria-selected', String(k === i));
+      b.tabIndex = k === i ? 0 : -1;
+    });
+  }
+
+  /* Every project is on the path, and the reader should not have to find
+     that out by hovering a plate. The switcher says so outright. */
+  PROJECTS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'path-tab'; b.setAttribute('role', 'tab');
+    b.innerHTML = '<b></b><span></span>';
+    b.querySelector('b').textContent = String(i + 1).padStart(2, '0');
+    b.querySelector('span').textContent = p.title;
+    b.addEventListener('click', () => { drifting = false; select(i); });
+    tabsEl.appendChild(b);
+  });
+  tabsEl.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault(); drifting = false;
+    const n = (proj + (e.key === 'ArrowRight' ? 1 : -1) + PROJECTS.length) % PROJECTS.length;
+    select(n); tabsEl.children[n].focus();
+  });
+
+  /* ------------------------------------------------------ carrying it */
+  const ratioAt = e => {
+    const r = rail.getBoundingClientRect(), s = spanPx();
+    return s > 0 ? clamp((e.clientX - r.left - pos[0]) / s, 0, 1) : 0;
+  };
+  let holding = false;
+  /* stacked, the stations share an x and there is no rail to drag along */
+  const draggable = () => !COARSE && pos.length > 1 && spanPx() > 40;
+  rail.addEventListener('pointerdown', e => {
+    if (!draggable()) return;
+    holding = true; drifting = false;
+    rail.setPointerCapture(e.pointerId);
+    place(ratioAt(e));
+  });
+  rail.addEventListener('pointermove', e => {
+    if (!draggable()) return;
+    /* No button down is still a walk — the torch follows the reader along the
+       rail, which is how the control explains itself. Either way the pointer
+       has found the rail, so the drift has done its job and stands down. */
+    drifting = false;
+    place(ratioAt(e));
+  });
+  const letGo = e => {
+    if (!holding) return;
+    holding = false;
+    try { rail.releasePointerCapture(e.pointerId); } catch (err) {}
+  };
+  rail.addEventListener('pointerup', letGo);
+  rail.addEventListener('pointercancel', letGo);
+  nodesEl.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault(); drifting = false;
+    toStep(at + (e.key === 'ArrowRight' ? 1 : -1));
+    const n = nodesEl.children[at]; if (n) n.focus();
+  });
+
+  /* the cards upstream choose whose pipeline this is */
+  $$('.card[data-project]').forEach(card => {
+    const i = PROJECTS.findIndex(p => p.id === card.dataset.project);
+    if (i < 0) return;
+    const sel = document.createElement('span');
+    sel.className = 'card-sel'; sel.textContent = 'On the path';
+    card.appendChild(sel);
+    card.addEventListener('pointerenter', () => { if (!COARSE) select(i); });
+    card.addEventListener('focus', () => select(i));
+  });
+
+  /* ---------------------------------------------------------- the drift
+     Until the rail has been touched the torch walks it alone, so the reader
+     sees the stations lighting in order and understands what the control
+     does without being told. The first touch ends it for good. */
+  let last = 0;
+  function tick(now) {
+    raf = 0;
+    if (!drifting || !inView) return;
+    /* slow enough that a station's note can actually be read before the
+       torch has moved off it — about four seconds a stage */
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    const nt = t + dt * .045;
+    place(nt >= 1 ? 0 : nt);
+    raf = requestAnimationFrame(tick);
+  }
+  const wake = () => {
+    if (raf || !drifting || !inView) return;
+    last = performance.now();
+    raf = requestAnimationFrame(tick);
+  };
+  new IntersectionObserver(es => {
+    inView = es[0].isIntersecting;
+    if (inView) wake();
+  }, { threshold: .18 }).observe(root);
+
+  /* The near plane is fixed to the lower viewport and lies straight across
+     this band. Once the band is most of what is on screen the garden is
+     faded off it — and handed back the moment the reader leaves. */
+  new IntersectionObserver(es => {
+    document.documentElement.classList.toggle('reading-path', es[0].isIntersecting);
+  }, { threshold: [0, .5], rootMargin: '-18% 0px -18% 0px' }).observe(root);
+
+  /* 1–5 jumps to a stage, but only while the band is actually being read and
+     nothing with its own idea of a number key has the focus */
+  addEventListener('keydown', e => {
+    if (!inView || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (document.documentElement.classList.contains('shoji-open')) return;
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement || {}).tagName || '')) return;
+    const n = parseInt(e.key, 10);
+    if (!(n >= 1 && n <= steps.length)) return;
+    e.preventDefault(); drifting = false; toStep(n - 1);
+  });
+
+  addEventListener('resize', () => { measurePath(); place(t); }, { passive: true });
+  /* the stations are measured before the display face has arrived, and their
+     widths move when it does — take the measurement again once it has */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => { measurePath(); place(t); }).catch(() => {});
+  }
+  select(0);
+  wake();
+}
+
+/* ---------------------------------------------------------- the player
+   One instance, reloaded between projects. It is written against a video
+   that may not exist: every handler checks for a src first, so the bar and
+   the chapter list stay meaningful while the frame is still holding the
+   leader. */
+function createPlayer() {
+  const kp = $('#kp'), v = $('#kp-video');
+  const rail = $('#kp-rail'), fill = $('#kp-fill'), buf = $('#kp-buf'), head = $('#kp-head');
+  const ticks = $('#kp-ticks'), peek = $('#kp-peek'), capLine = $('#kp-caption');
+  const curEl = $('#kp-cur'), durEl = $('#kp-dur'), list = $('#kp-chapters');
+  const bToggle = $('#kp-toggle'), bMute = $('#kp-mute'), bFull = $('#kp-full');
+  const bRate = $('#kp-rate'), bCC = $('#kp-cc'), bBig = $('#kp-big'), slotPath = $('#kp-slot-path');
+  const RATES = [1, 1.25, 1.5, 0.75];
+
+  let media = null, chapters = [], span = 0, rateIx = 0, scrubbing = false, ccOn = true, track = null;
+
+  const ICON_PLAY  = '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 2l11 6-11 6z"/></svg>';
+  const ICON_PAUSE = '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 2h3.2v12H3.5zM9.3 2h3.2v12H9.3z"/></svg>';
+  const ICON_MUTE  = '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M7 3 4 6H2v4h2l3 3zM10.2 6.3l1.1 1.1 1.1-1.1.9.9-1.1 1.1 1.1 1.1-.9.9-1.1-1.1-1.1 1.1-.9-.9L10.4 8.3 9.3 7.2z"/></svg>';
+  const ICON_VOL   = '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M7 3 4 6H2v4h2l3 3zM10.4 5.2a4 4 0 0 1 0 5.6l-.9-.9a2.8 2.8 0 0 0 0-3.8zM12.2 3.4a6.4 6.4 0 0 1 0 9.2l-.9-.9a5.1 5.1 0 0 0 0-7.4z"/></svg>';
+
+  const fmt = s => {
+    if (!isFinite(s) || s < 0) s = 0;
+    const m = Math.floor(s / 60);
+    return m + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+  };
+  const has = () => !!(media && media.src);
+  /* the reel's length if it is here, the last chapter's shelf if it is not —
+     the ticks have to sit somewhere before there is a duration to sit on */
+  const total = () => {
+    if (has() && isFinite(v.duration) && v.duration > 0) return v.duration;
+    return span;
+  };
+
+  function paint() {
+    const T = total(), t = has() ? v.currentTime : 0;
+    const p = T > 0 ? clamp(t / T, 0, 1) : 0;
+    fill.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    head.style.left = (p * 100).toFixed(3) + '%';
+    curEl.textContent = fmt(t);
+    durEl.textContent = fmt(T);
+    rail.setAttribute('aria-valuenow', Math.round(p * 100));
+    let on = -1;
+    for (let i = 0; i < chapters.length; i++) if (t >= chapters[i].t - .01) on = i;
+    [].slice.call(list.children).forEach((li, i) => li.classList.toggle('on', i === on));
+  }
+
+  function buildChapters() {
+    list.innerHTML = ''; ticks.innerHTML = '';
+    const T = total();
+    chapters.forEach((c, i) => {
+      const li = document.createElement('li');
+      li.innerHTML = '<span class="cn">' + String(i + 1).padStart(2, '0') + '</span>' +
+                     '<span class="ct"></span><span class="cd">' + fmt(c.t) + '</span>';
+      li.querySelector('.ct').textContent = c.label;
+      li.addEventListener('click', () => seek(c.t));
+      list.appendChild(li);
+      if (T > 0 && c.t > 0) {
+        const tk = document.createElement('i');
+        tk.className = 'kp-tick';
+        tk.style.left = ((c.t / T) * 100).toFixed(3) + '%';
+        ticks.appendChild(tk);
+      }
+    });
+  }
+
+  function seek(t) {
+    if (!has()) return;
+    v.currentTime = clamp(t, 0, total() || 0);
+    paint();
+  }
+  const toggle = () => { if (!has()) return; v.paused ? v.play().catch(() => {}) : v.pause(); };
+
+  /* ------------------------------------------------------------ loading */
+  function load(p) {
+    media = p.media || {};
+    chapters = (media.chapters || []).slice().sort((a, b) => a.t - b.t);
+    /* a shelf past the last marker, so the final chapter is not a hairline */
+    span = chapters.length ? chapters[chapters.length - 1].t + 40 : 0;
+
+    stop();
+    kp.classList.toggle('has-src', has());
+    slotPath.innerHTML = has() ? '' :
+      'Drop the clip at <code>media/' + p.id + '.mp4</code>, then set <code>src</code> on the ' +
+      '<code>' + p.id + '</code> entry in <code>PROJECTS</code>.';
+
+    if (track) { track.remove(); track = null; }
+    v.removeAttribute('src'); v.innerHTML = '';
+    $('#kp-poster').style.backgroundImage = media.poster ? 'url("' + media.poster + '")' : '';
+
+    if (has()) {
+      v.src = media.src;
+      if (media.captions) {
+        track = document.createElement('track');
+        track.kind = 'captions'; track.src = media.captions; track.default = true;
+        track.srclang = 'en'; track.label = 'English';
+        v.appendChild(track);
+        /* rendered by hand into .kp-caption — the native cue box cannot be
+           typed to match the page, and this one has to sit in the same
+           family as everything else in the frame */
+        track.addEventListener('load', () => {
+          const tt = v.textTracks[0]; if (!tt) return;
+          tt.mode = 'hidden';
+          tt.addEventListener('cuechange', () => {
+            const c = tt.activeCues && tt.activeCues[0];
+            capLine.textContent = c ? c.text.replace(/<[^>]+>/g, '') : '';
+            capLine.classList.toggle('on', ccOn && !!c);
+          });
+        });
+      }
+      v.load();
+    }
+    bCC.style.display = media.captions ? '' : 'none';
+    [bToggle, bMute, bFull, bRate, bCC].forEach(b => b.disabled = !has());
+    buildChapters();
+    paint();
+  }
+
+  function pause() { if (!v.paused) v.pause(); }
+  function stop() {
+    pause();
+    try { v.currentTime = 0; } catch (e) {}
+    kp.classList.remove('playing');
+    capLine.classList.remove('on');
+    bToggle.innerHTML = ICON_PLAY;
+    paint();
+  }
+
+  /* ------------------------------------------------------------- events */
+  v.addEventListener('loadedmetadata', () => { buildChapters(); paint(); });
+  v.addEventListener('timeupdate', () => { if (!scrubbing) paint(); });
+  v.addEventListener('play',  () => { kp.classList.add('playing');    bToggle.innerHTML = ICON_PAUSE; });
+  v.addEventListener('pause', () => { kp.classList.remove('playing'); bToggle.innerHTML = ICON_PLAY; });
+  v.addEventListener('ended', () => { kp.classList.remove('playing'); bToggle.innerHTML = ICON_PLAY; });
+  v.addEventListener('progress', () => {
+    const T = total();
+    if (!T || !v.buffered.length) return;
+    buf.style.transform = 'scaleX(' + (v.buffered.end(v.buffered.length - 1) / T).toFixed(4) + ')';
+  });
+  v.addEventListener('error', () => {
+    /* Clearing the element fires error too, and that is not a failure — only
+       a src we actually asked for and did not get is worth reporting. */
+    if (!media || !media.src) return;
+    /* a named file that will not load is worse than no file: say which */
+    kp.classList.remove('has-src');
+    slotPath.innerHTML = 'Could not load <code>' + media.src + '</code> — check the path and the codec.';
+  });
+
+  bBig.addEventListener('click', toggle);
+  bToggle.addEventListener('click', toggle);
+  bMute.addEventListener('click', () => {
+    v.muted = !v.muted;
+    bMute.innerHTML = v.muted ? ICON_MUTE : ICON_VOL;
+    bMute.classList.toggle('on', v.muted);
+  });
+  bRate.addEventListener('click', () => {
+    rateIx = (rateIx + 1) % RATES.length;
+    v.playbackRate = RATES[rateIx];
+    bRate.innerHTML = RATES[rateIx] + '&times;';
+    bRate.classList.toggle('on', RATES[rateIx] !== 1);
+  });
+  bCC.addEventListener('click', () => {
+    ccOn = !ccOn;
+    bCC.classList.toggle('on', ccOn);
+    capLine.classList.toggle('on', ccOn && !!capLine.textContent);
+  });
+  bCC.classList.add('on');
+  bFull.addEventListener('click', () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else if (kp.requestFullscreen) kp.requestFullscreen().catch(() => {});
+  });
+
+  /* ------------------------------------------------- scrubbing the rail */
+  const ratioAt = e => {
+    const r = rail.getBoundingClientRect();
+    return clamp((e.clientX - r.left) / Math.max(1, r.width), 0, 1);
+  };
+  rail.addEventListener('pointerdown', e => {
+    if (!has()) return;
+    scrubbing = true; kp.classList.add('scrubbing');
+    rail.setPointerCapture(e.pointerId);
+    seek(ratioAt(e) * total());
+  });
+  rail.addEventListener('pointermove', e => {
+    const T = total(); if (!T) return;
+    const r = ratioAt(e);
+    if (scrubbing) seek(r * T);
+    const t = r * T;
+    let name = '';
+    for (let i = 0; i < chapters.length; i++) if (t >= chapters[i].t - .01) name = chapters[i].label;
+    peek.innerHTML = '';
+    peek.appendChild(document.createTextNode(name || 'Seek'));
+    const i = document.createElement('i'); i.textContent = fmt(t); peek.appendChild(i);
+    peek.style.left = (r * 100).toFixed(2) + '%';
+    peek.classList.add('on');
+  });
+  rail.addEventListener('pointerleave', () => peek.classList.remove('on'));
+  const release = e => {
+    if (!scrubbing) return;
+    scrubbing = false; kp.classList.remove('scrubbing');
+    try { rail.releasePointerCapture(e.pointerId); } catch (err) {}
+  };
+  rail.addEventListener('pointerup', release);
+  rail.addEventListener('pointercancel', release);
+  /* the rail has no keydown of its own: the dialog's handler already owns the
+     arrows whenever it is up, and two listeners would seek ten seconds */
+
+  return { load: load, stop: stop, pause: pause, toggle: toggle, seek: seek,
+           video: v, has: has, nudge: d => seek(v.currentTime + d) };
+}
+
+/* -------------------------------------------------------- the takeover */
+function wireShoji() {
+  const sj = $('#shoji'); if (!sj) return;
+  const stage = $('#sj-stage');
+  const player = createPlayer();
+  const WIPE = REDUCE ? 1 : 560, PART = REDUCE ? 1 : 720;
+
+  let open = false, index = -1, opener = null, timers = [];
+  const after = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const clear = () => { timers.forEach(clearTimeout); timers = []; };
+
+  /* --------------------------------------------------------- the study */
+  function fillRail(p) {
+    $('#sj-ix').textContent = String(index + 1).padStart(2, '0') + ' / ' + String(PROJECTS.length).padStart(2, '0');
+    $('#sj-title').textContent = p.title;
+    $('#sj-jp').textContent = p.jp;
+    $('#sj-lead').textContent = p.lead;
+
+    const stats = $('#sj-stats'); stats.innerHTML = '';
+    (p.stats || []).forEach(s => {
+      const d = document.createElement('div');
+      d.innerHTML = '<b></b><span></span>';
+      d.querySelector('b').textContent = s.n;
+      d.querySelector('span').textContent = s.k;
+      stats.appendChild(d);
+    });
+
+    const tags = $('#sj-tags'); tags.innerHTML = '';
+    (p.tags || []).forEach(t => {
+      const s = document.createElement('span'); s.textContent = t; tags.appendChild(s);
+    });
+
+    const links = $('#sj-links'); links.innerHTML = '';
+    (p.links || []).forEach(l => {
+      const a = document.createElement('a');
+      a.href = l.href; a.target = '_blank'; a.rel = 'noopener';
+      a.innerHTML = '<svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="currentColor" stroke-width="1.3"/></svg>';
+      a.insertBefore(document.createTextNode(l.label), a.firstChild);
+      links.appendChild(a);
+    });
+  }
+
+  function show(i) {
+    index = (i + PROJECTS.length) % PROJECTS.length;
+    const p = PROJECTS[index];
+    fillRail(p);
+    player.load(p);
+    stage.scrollTop = 0;
+    /* let the sanctuary behind the paper move to this project's corner —
+       it is blurred, but the shift is the difference between a backdrop and
+       a room the study is standing in */
+    if (typeof RIG === 'object' && RIG) RIG.focus = p.view;
+  }
+
+  /* ------------------------------------------------- open · shut · part */
+  function openAt(i, from) {
+    if (open) { swap(i); return; }
+    open = true; opener = from || null; clear();
+    sj.classList.add('live');
+    sj.setAttribute('aria-hidden', 'false');
+    /* the parked state has to resolve in the new layout before the screens
+       are told to close, or they arrive already shut */
+    void sj.offsetWidth;
+    sj.classList.add('shut');
+    after(WIPE, () => {
+      /* The lock takes the scrollbar with it and the page jumps by its width.
+         Taken here, the jump happens under shut screens and is never seen. */
+      document.documentElement.classList.add('shoji-open');
+      if (window.__lenis) window.__lenis.stop();
+      show(i);                       /* built behind the paper, never seen */
+      sj.classList.remove('shut');
+      sj.classList.add('open');
+      after(80, () => $('#sj-close').focus({ preventScroll: true }));
+    });
+  }
+
+  /* Moving between projects re-uses the screens: shut over the study that is
+     up, change it while nothing can be seen, part again onto the next one. */
+  function swap(i) {
+    if (!open) { openAt(i, opener); return; }
+    clear();
+    sj.classList.add('shut');
+    after(WIPE, () => {
+      sj.classList.add('closing');
+      sj.classList.remove('open');
+      void sj.offsetWidth;           /* commit the blank before re-dressing it */
+      show(i);
+      sj.classList.remove('closing');
+      sj.classList.add('open');
+      sj.classList.remove('shut');
+    });
+  }
+
+  function close() {
+    if (!open) return;
+    open = false; clear();
+    player.pause();                  /* the sound stops with the click */
+    sj.classList.add('shut');        /* screens come across the live study */
+    if (typeof RIG === 'object' && RIG) RIG.focus = -1;
+    after(WIPE, () => {
+      sj.classList.add('closing');
+      sj.classList.remove('open');
+      player.stop();
+      document.documentElement.classList.remove('shoji-open');
+      if (window.__lenis) window.__lenis.start();
+      void sj.offsetWidth;
+      sj.classList.remove('shut');   /* and part again onto the page */
+      after(PART, () => {
+        sj.classList.remove('live', 'closing');
+        sj.setAttribute('aria-hidden', 'true');
+        if (opener) { opener.focus({ preventScroll: true }); opener = null; }
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------ wiring */
+  $$('.card[data-project]').forEach(card => {
+    const i = PROJECTS.findIndex(p => p.id === card.dataset.project);
+    if (i < 0) return;
+    card.addEventListener('click', () => openAt(i, card));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openAt(i, card); }
+    });
+    /* advertise the runtime on the badge once a reel declares one */
+    const rt = PROJECTS[i].runtime, tag = card.querySelector('.card-tag');
+    if (rt && tag) tag.insertBefore(document.createTextNode(rt + ' · '), tag.lastChild);
+  });
+
+  $('#sj-close').addEventListener('click', close);
+  $('#sj-prev').addEventListener('click', () => swap(index - 1));
+  $('#sj-next').addEventListener('click', () => swap(index + 1));
+  sj.querySelector('.sj-scrim').addEventListener('click', close);
+
+  /* the page's own cursor should keep working over the study */
+  sj.querySelectorAll('button, a').forEach(el => el.setAttribute('data-cursor', ''));
+
+  addEventListener('keydown', e => {
+    if (!open) return;
+    const tag = (document.activeElement || {}).tagName || '';
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) return;
+    /* Space is how a focused button is pressed. Swallowing it to toggle the
+       reel would make every control in the study unusable from the keyboard,
+       so the shortcut stands down whenever a control has the focus. */
+    const onControl = /^(BUTTON|A)$/.test(tag);
+    switch (e.key) {
+      case 'Escape': e.preventDefault(); close(); break;
+      case ' ': case 'k':
+        if (e.key === ' ' && onControl) break;
+        e.preventDefault(); player.toggle(); break;
+      case 'ArrowLeft':  e.preventDefault(); player.nudge(-5); break;
+      case 'ArrowRight': e.preventDefault(); player.nudge(5);  break;
+      case 'm': case 'M': $('#kp-mute').click(); break;
+      case 'f': case 'F': $('#kp-full').click(); break;
+      case '[': e.preventDefault(); swap(index - 1); break;
+      case ']': e.preventDefault(); swap(index + 1); break;
+      case 'Tab': trap(e); break;
+    }
+  });
+
+  /* focus stays inside the study while it is up — a dialog that lets the
+     keyboard wander back onto the page behind it is not a dialog */
+  function trap(e) {
+    const f = [].slice.call(sj.querySelectorAll(
+      'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+    )).filter(el => el.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+}
+
 /* ======================================================== 14 · booting */
 const JOBS = [
   ['Reading the type', () => document.fonts && document.fonts.load('600 320px Wordmark')],
@@ -4763,7 +6230,10 @@ function boot() {
   }
 
   makeGrain();
-  wireReveals(); wireForegroundStages(); wireNav(); wireHeroExit(); wireFocus(); wireCursor();
+  wireReveals(); wireForegroundStages(); wireNav(); wireHeroExit(); wireFocus();
+  /* before wireCursor: the study marks its own controls [data-cursor], and
+     wireCursor only ever reads that attribute once */
+  wireShoji(); wirePath(); wireCursor();
   document.body.classList.add('is-locked');
   let i = 0;
   const step = () => {
